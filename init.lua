@@ -604,8 +604,6 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
-        'gopls',
-        'delve',
         'pyright',
         'ruff',
         'mypy',
@@ -613,13 +611,6 @@ require('lazy').setup({
         -- 'debugypy',
         'r-languageserver',
         'clangd',
-        'html-lsp',
-        'css-lsp',
-        'typescript-language-server',
-        'prettier',
-        'svelte-language-server',
-        'tailwindcss',
-        'zls',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -877,7 +868,6 @@ require('lazy').setup({
         'bash',
         'c',
         'diff',
-        'html',
         'lua',
         'luadoc',
         'markdown',
@@ -885,10 +875,6 @@ require('lazy').setup({
         'query',
         'vim',
         'vimdoc',
-        'css',
-        'javascript',
-        'typescript',
-        'svelte',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
