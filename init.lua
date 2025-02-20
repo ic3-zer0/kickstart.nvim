@@ -328,7 +328,7 @@ require('lazy').setup({
       -- See `:help telescope` and `:help telescope.setup()`
       require('telescope').setup {
         defaults = {
-          file_ignore_patterns = { '.git', 'node_modules', 'venv', '__pycache__' },
+          file_ignore_patterns = { 'vendor', '.git', 'node_modules', 'venv', '__pycache__' },
           layout_strategy = 'flex',
           layout_config = {
             flex = {
@@ -624,7 +624,8 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
-        -- 'debugypy',
+        'debugpy',
+        'pyright',
         -- 'clangd',
         'html-lsp',
         'css-lsp',
@@ -633,6 +634,7 @@ require('lazy').setup({
         'svelte-language-server',
         'tailwindcss',
         'intelephense',
+        -- 'phpactor',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -685,7 +687,7 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        -- python = { 'black' },
+        python = { 'black' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettier', stop_after_first = true },
@@ -902,6 +904,8 @@ require('lazy').setup({
         'javascript',
         'typescript',
         'php',
+        'python',
+        'go',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
