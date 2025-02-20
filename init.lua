@@ -339,7 +339,7 @@ require('lazy').setup({
       -- See `:help telescope` and `:help telescope.setup()`
       require('telescope').setup {
         defaults = {
-          file_ignore_patterns = { 'vendor', '.git', 'node_modules', 'venv', '__pycache__' },
+          file_ignore_patterns = { 'vendor', '.git', 'node_modules', 'venv', '__pycache__', 'vendor' },
           layout_strategy = 'flex',
           layout_config = {
             flex = {
@@ -681,7 +681,7 @@ require('lazy').setup({
         'svelte-language-server',
         'tailwindcss',
         'intelephense',
-        -- 'phpactor',
+        'phpactor',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
