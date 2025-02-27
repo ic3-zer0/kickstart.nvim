@@ -730,7 +730,7 @@ require('lazy').setup({
           lsp_format_opt = 'fallback'
         end
         return {
-          timeout_ms = 500,
+          timeout_ms = 2500,
           lsp_format = lsp_format_opt,
         }
       end,
@@ -739,7 +739,7 @@ require('lazy').setup({
         python = { 'black' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
-        javascript = { 'prettier', stop_after_first = true },
+        javascript = { 'prettier' },
       },
     },
   },
@@ -958,6 +958,7 @@ require('lazy').setup({
         'php',
         'python',
         'go',
+        'svelte',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
