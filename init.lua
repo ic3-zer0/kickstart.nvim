@@ -35,6 +35,10 @@ end)
 -- Enable break indent
 vim.opt.breakindent = true
 
+-- Tabs vs Spaces
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+
 -- Save undo history
 vim.opt.undofile = true
 
@@ -734,11 +738,11 @@ require('lazy').setup({
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
-        return {
-          timeout_ms = 2500,
-          lsp_format = lsp_format_opt,
-        }
-      end
+          return {
+            timeout_ms = 2500,
+            lsp_format = 'fallback',
+          }
+        end
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
