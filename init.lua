@@ -349,7 +349,7 @@ require('lazy').setup({
       -- See `:help telescope` and `:help telescope.setup()`
       require('telescope').setup {
         defaults = {
-          file_ignore_patterns = { '.git', 'node_modules', 'venv', '__pycache__' },
+          file_ignore_patterns = { 'vendor', '.git', 'node_modules', 'venv', '__pycache__', 'vendor' },
           layout_strategy = 'flex',
           layout_config = {
             flex = {
@@ -636,8 +636,8 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
+        gopls = {},
+        pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -680,14 +680,9 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
-        'gopls',
-        'delve',
+        'debugpy',
         'pyright',
-        'ruff',
-        'mypy',
-        'black',
-        -- 'debugypy',
-        -- 'r-languageserver',
+        'gopls',
         -- 'clangd',
         'html-lsp',
         'css-lsp',
@@ -695,6 +690,8 @@ require('lazy').setup({
         'prettier',
         'svelte-language-server',
         'tailwindcss',
+        'intelephense',
+        'phpactor',
         'zls',
         -- 'intelephense',
       })
@@ -741,18 +738,18 @@ require('lazy').setup({
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
-          return {
-            timeout_ms = 500,
-            lsp_format = 'fallback',
-          }
-        end
+        return {
+          timeout_ms = 2500,
+          lsp_format = lsp_format_opt,
+        }
+      end
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'black' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
-        javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        javascript = { 'prettier' },
       },
     },
   },
@@ -949,9 +946,10 @@ require('lazy').setup({
         'css',
         'javascript',
         'typescript',
-        'svelte',
-        'zig',
         'php',
+        'python',
+        'go',
+        'svelte',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,

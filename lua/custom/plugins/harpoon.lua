@@ -35,6 +35,10 @@ return {
       harpoon:list():add()
     end, { desc = '[A]dd to [H]arpoon list' })
 
+    vim.keymap.set('n', '<leader>rah', function()
+      harpoon:list():clear()
+    end, { desc = '[R]remove [a]ll from [H]arpoon list' })
+
     -- vim.keymap.set('n', '<C-e>', function()
     --   harpoon.ui:toggle_quick_menu(harpoon:list())
     -- end)
@@ -59,6 +63,8 @@ return {
     vim.keymap.set('n', '<A-l>', function()
       harpoon:list():next()
     end)
+
+    -- Remove Item
     vim.keymap.set('n', '<C-x>', function()
       harpoon:list():remove()
     end)
