@@ -739,7 +739,7 @@ require('lazy').setup({
         end
       end,
       formatters_by_ft = {
-        go = { 'gofmt' },
+        go = { 'gofmt', 'goimports' },
         lua = { 'stylua' },
         python = { 'black' },
         --
@@ -922,6 +922,7 @@ require('lazy').setup({
   },
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    branch = 'master',
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
