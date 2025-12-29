@@ -747,7 +747,7 @@ require('lazy').setup({
         end
       end,
       formatters_by_ft = {
-        go = { 'gofmt', 'goimports', 'gofumpt' },
+        go = { 'gofmt', 'goimports' },
         lua = { 'stylua' },
         python = { 'black' },
         --
