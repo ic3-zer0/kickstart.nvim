@@ -636,7 +636,13 @@ require('lazy').setup({
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        gopls = {},
+        gopls = {
+          gofumpt = true,
+          analyses = {
+            unusedparams = true,
+          },
+          staticcheck = true,
+        },
         pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -683,6 +689,8 @@ require('lazy').setup({
         'debugpy',
         'pyright',
         'gopls',
+        'gofumpt',
+        'goimports',
         'html-lsp',
         'css-lsp',
         'typescript-language-server',
@@ -739,7 +747,7 @@ require('lazy').setup({
         end
       end,
       formatters_by_ft = {
-        go = { 'gofmt', 'goimports' },
+        go = { 'gofmt', 'goimports', 'gofumpt' },
         lua = { 'stylua' },
         python = { 'black' },
         --
