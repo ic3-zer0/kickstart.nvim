@@ -643,7 +643,20 @@ require('lazy').setup({
           },
           staticcheck = true,
         },
-        pyright = {},
+        pyright = {
+          settings = {
+            python = {
+              analysis = {
+                typeCheckingMode = 'off', -- or "off" if you want very quiet
+                diagnosticSeverityOverrides = {
+                  reportUnusedVariable = 'none',
+                  reportUnusedImport = 'none',
+                  reportGeneralTypeIssues = 'error', -- keep real issues
+                },
+              },
+            },
+          },
+        },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -696,6 +709,7 @@ require('lazy').setup({
         'typescript-language-server',
         'prettier',
         'tailwindcss',
+        'golangci-lint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -1022,5 +1036,17 @@ require('lazy').setup({
   },
 })
 
+vim.diagnostic.config {
+  severity_sort = true,
+  virtual_text = {
+    severity = { min = vim.diagnostic.severity.ERROR },
+  },
+  signs = {
+    severity = { min = vim.diagnostic.severity.ERROR },
+  },
+  underline = {
+    severity = { min = vim.diagnostic.severity.ERROR },
+  },
+}
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
