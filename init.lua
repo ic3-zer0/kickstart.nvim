@@ -640,8 +640,10 @@ require('lazy').setup({
           gofumpt = true,
           analyses = {
             unusedparams = true,
+            printf = true,
           },
           staticcheck = true,
+          sementicTokens = true,
         },
         pyright = {},
         -- rust_analyzer = {},
@@ -651,7 +653,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        ts_ls = {},
         --
 
         lua_ls = {
@@ -741,8 +743,8 @@ require('lazy').setup({
           return nil
         else
           return {
-            timeout_ms = 2500,
-            lsp_format = lsp_format_opt,
+            timeout_ms = 5500,
+            lsp_format = 'fallback',
           }
         end
       end,
@@ -750,9 +752,13 @@ require('lazy').setup({
         go = { 'gofmt', 'goimports' },
         lua = { 'stylua' },
         python = { 'black' },
+        sql = { 'sqlfmt' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettier' },
+        javascriptreact = { 'prettier' },
+        typescript = { 'prettier' },
+        typescriptreact = { 'prettier' },
       },
     },
   },
