@@ -552,28 +552,24 @@ require('lazy').setup({
       ---@type table<string, vim.lsp.Config>
       local servers = {
         gopls = {
-          settings = {
-            gopls = {
-              gofumpt = true,
-              analyses = { unusedparams = true },
-              staticcheck = true,
-            },
+          gofumpt = true,
+          analyses = {
+            unusedparams = true,
+            printf = true,
           },
+          staticcheck = true,
+          sementicTokens = true,
         },
-        pyright = {
-          settings = {
-            python = {
-              analysis = {
-                typeCheckingMode = 'off',
-                diagnosticSeverityOverrides = {
-                  reportUnusedVariable = 'none',
-                  reportUnusedImport = 'none',
-                  reportGeneralTypeIssues = 'error',
-                },
-              },
-            },
-          },
-        },
+        pyright = {},
+        -- rust_analyzer = {},
+        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
+        --
+        -- Some languages (like typescript) have entire language plugins that can be useful:
+        --    https://github.com/pmizio/typescript-tools.nvim
+        --
+        -- But for many setups, the LSP (`ts_ls`) will work just fine
+        ts_ls = {},
+        --
 
         -- Special Lua Config, as recommended by neovim help docs
         lua_ls = {
@@ -662,7 +658,10 @@ require('lazy').setup({
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
-          return { timeout_ms = 2500 }
+          return {
+            timeout_ms = 5500,
+            lsp_format = 'fallback',
+          }
         end
       end,
       default_format_opts = {
@@ -674,6 +673,12 @@ require('lazy').setup({
         python = { 'black' },
         javascript = { 'prettier' },
         sql = { 'pg_format' },
+        --
+        -- You can use 'stop_after_first' to run the first available formatter from the list
+        javascript = { 'prettier' },
+        javascriptreact = { 'prettier' },
+        typescript = { 'prettier' },
+        typescriptreact = { 'prettier' },
       },
     },
   },
