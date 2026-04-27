@@ -629,7 +629,7 @@ require('lazy').setup({
         'prettier',
         'tailwindcss',
         'golangci-lint',
-        'sql-formatter',
+        'pgformatter',
       })
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -673,7 +673,7 @@ require('lazy').setup({
         lua = { 'stylua' },
         python = { 'black' },
         javascript = { 'prettier' },
-        sql = { 'sql_formatter' },
+        sql = { 'pg_format' },
       },
     },
   },
