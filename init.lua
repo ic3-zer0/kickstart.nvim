@@ -676,6 +676,9 @@ require('lazy').setup({
         python = { 'black' },
         javascript = { 'prettier' },
         sql = { 'pg_format' },
+        terraform = { 'terraform_fmt' },
+        hcl = { 'terraform_fmt' },
+        ['terraform-vars'] = { 'terraform_fmt' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         javascript = { 'prettier' },
