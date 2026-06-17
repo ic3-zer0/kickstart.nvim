@@ -657,12 +657,15 @@ require('lazy').setup({
         local disable_filetypes = { c = true, cpp = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
-        else
-          return {
-            timeout_ms = 5500,
-            lsp_format = 'fallback',
-          }
         end
+
+        local opts = { timeout_ms = 5500, lsp_format = 'fallback' }
+
+        if vim.bo[bufnr].filetype == 'go' and require('neoconf').get('conform.disable_goimports') then
+          opts.formatters = { 'gofmt' }
+        end
+
+        return opts
       end,
       default_format_opts = {
         lsp_format = 'fallback',
@@ -880,10 +883,18 @@ require('lazy').setup({
           'python',
           'go',
           'svelte',
+          'terraform',
+          'hcl',
         },
         auto_install = true,
         highlight = true,
       }
+
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function(args)
+          pcall(vim.treesitter.start, args.buf)
+        end,
+      })
     end,
   },
 
