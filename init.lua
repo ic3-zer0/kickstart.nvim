@@ -809,6 +809,14 @@ require('lazy').setup({
     end,
   },
 
+  {
+    'nvim-pack/nvim-spectre',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    keys = {
+      { '<leader>R', function() require('spectre').toggle() end, desc = '[R]eplace (Spectre)' },
+    },
+  },
+
   -- Highlight todo, notes, etc in comments
   {
     'folke/todo-comments.nvim',
